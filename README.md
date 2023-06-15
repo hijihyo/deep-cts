@@ -6,7 +6,7 @@ This repository contains all the resources for my project "Boosting Performance 
 ## Usage
 1. Clone this repository:
 ```bash
-$ git clone [url]
+$ git clone git@github.com:hijihyo/deep-cts.git
 ```
 
 2. Create an environment and install necessary packages:
