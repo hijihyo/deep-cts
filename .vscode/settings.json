@@ -1,0 +1,20 @@
+{
+  "editor.formatOnSave": true,
+  "python.formatting.blackArgs": [
+    "--line-length=99"
+  ],
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length=99"
+  ],
+  "python.tensorBoard.logDirectory": "./logs",
+  "isort.args": [
+    "--profile=black",
+    "--filter-files"
+  ],
+  "isort.check": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+}
