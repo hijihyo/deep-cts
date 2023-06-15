@@ -13,6 +13,7 @@ def parse_args():
     parser.add_argument("--variant", type=str, default="variant")
     parser.add_argument("--weights", type=str, default="none")
     parser.add_argument("--num-classes", type=int, default=4)
+    parser.add_argument("--num-attn-heads", type=int, default=16)
     # data-specific
     parser.add_argument("--dataset", type=str, default="ctssev")
     parser.add_argument("--num-splits", type=int, default=5)  # fixed
@@ -44,6 +45,13 @@ CONFIG_MAPPING = {
     "tht_resnet_concat": "THTResNetConcatConfig",
     "tht_swint_concat": "THTSwinTConcatConfig",
     "tht_vit_concat": "THTViTConcatConfig",
+    # Attention
+    "tht_convnext_attn": "THTConvNeXtAttnConfig",
+    "tht_efficientnet_attn": "THTEfficientNetAttnConfig",
+    "tht_mobilenet_attn": "THTMobileNetAttnConfig",
+    "tht_resnet_attn": "THTResNetAttnConfig",
+    "tht_swint_attn": "THTSwinTAttnConfig",
+    "tht_vit_attn": "THTViTAttnConfig",
 }
 MODEL_MAPPING = {
     # Only Thenar
@@ -60,6 +68,13 @@ MODEL_MAPPING = {
     "tht_resnet_concat": "THTResNetConcat",
     "tht_swint_concat": "THTSwinTConcat",
     "tht_vit_concat": "THTViTConcat",
+    # Attention
+    "tht_convnext_attn": "THTConvNeXtAttn",
+    "tht_efficientnet_attn": "THTEfficientNetAttn",
+    "tht_mobilenet_attn": "THTMobileNetAttn",
+    "tht_resnet_attn": "THTResNetAttn",
+    "tht_swint_attn": "THTSwinTAttn",
+    "tht_vit_attn": "THTViTAttn",
 }
 DATASET_MAPPING = {"ctsdiag": "get_kfold_ctsdiag", "ctssev": "get_kfold_ctssev"}
 
@@ -85,9 +100,10 @@ if __name__ == "__main__":
     args = parse_args()
 
     model_config = getattr(models, CONFIG_MAPPING[args.model])(
-        args.variant,
-        args.weights,
-        args.num_classes,
+        variant=args.variant,
+        weights=args.weights,
+        num_classes=args.num_classes,
+        num_attn_heads=args.num_attn_heads,
     )
     model = getattr(models, MODEL_MAPPING[args.model])(model_config)
 
